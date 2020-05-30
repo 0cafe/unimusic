@@ -1,0 +1,7 @@
+git init 
+
+git remote add gitee https://gitee.com/cafe0/quyigou-client.git
+
+git pull gitee master
+
+
