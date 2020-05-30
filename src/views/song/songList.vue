@@ -1,0 +1,205 @@
+<template>
+	<div>
+		<!-- 列表页面 -->
+		<div class="container" v-if="!showEdit">
+			<div class="header">
+				<div class="title">歌曲列表</div>
+				<lin-search @query="onQueryChange" placeholder="请输入歌曲或者歌手关键字" />
+			</div>
+
+			<!-- 表格 -->
+			<lin-table :tableColumn="tableColumn" :tableData="tableData" :operate="operate" @handleEdit="handleEdit"
+			 @handleDelete="handleDelete" @row-click="rowClick" v-loading="loading">
+			</lin-table>
+
+
+			<!-- 分页 -->
+			<div class="pagination">
+				<el-pagination @current-change="handleCurrentChange" :background="true" :page-size="pageCount" :current-page="currentPage"
+				 layout="prev, pager, next, jumper" :total="total_nums"></el-pagination>
+			</div>
+		</div>
+		<SongEdit :editID="editID" @editClose="editClose" v-if="showEdit"></SongEdit>
+	</div>
+	</div>
+</template>
+
+<script>
+	import LinSearch from '@/components/base/search/lin-search'
+	import Song from '@/models/song'
+	import LinTable from '@/components/base/table/lin-table'
+	import SongEdit from './songEdit.vue'
+	export default {
+		components: {
+			LinTable,
+			SongEdit,
+			LinSearch
+		},
+		data() {
+			return {
+				currentPage: 1, // 默认获取第一页的数据
+				pageCount: 10, // 每页10条数据
+				total_nums: 0, // 分组内的用户总数
+				searchKeyword: '', //搜索关键词
+				tableColumn: [{
+						prop: 'id',
+						label: '歌曲id'
+					},
+					{
+						prop: 'song',
+						label: '歌曲名'
+					},
+					{
+						prop: 'singer',
+						label: '歌手'
+					},
+					{
+						prop: 'singer_id',
+						label: '歌手id',
+					},
+					{
+						prop: 'play_url',
+						label: '音乐播放地址'
+					},
+					{
+						prop: 'from',
+						label: '来源0:网络，1：本地'
+					},
+					{
+						prop: 'mv_url',
+						label: 'mv播放地址'
+					},
+					{
+						prop: 'lyric_id',
+						label: '歌词id'
+					},
+					{
+						prop: 'create_time',
+						label: '创建时间'
+					},
+					{
+						prop: 'update_time',
+						label: '更新时间'
+					},
+				],
+				tableData: [],
+				operate: [],
+				showEdit: false,
+				editID: 1,
+			}
+		},
+		methods: {
+			async getsong(page, count) {
+				this.loading = true
+				let params = {
+					page,
+					count,
+					word: this.searchKeyword
+				}
+				try {
+					const songs = await Song.getSongs(params)
+					this.tableData = songs.data
+					this.currentPage = songs.current_page
+					this.total_nums = songs.total
+					this.loading = false
+				} catch (error) {
+					if (error.error_code === 10020) {
+						this.tableData = []
+						this.loading = false
+					}
+				}
+			},
+			handleEdit(val) {
+				this.editID = val.row.id
+				this.showEdit = true
+			},
+			handleDelete(val) {
+				let id = val.row.id
+				this.$confirm('此操作将永久删除该歌曲, 是否继续?', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'warning',
+				}).then(async () => {
+					const res = await Song.delectSong(id)
+					if (res.error_code === 0) {
+						this.getsong(this.currentPage, this.pageCount)
+						this.$message({
+							type: 'success',
+							message: `${res.msg}`
+						})
+					}
+				})
+			},
+			rowClick() {},
+			editClose() {
+				this.showEdit = false
+				this.getsong(this.currentPage, this.pageCount)
+			},
+			// 切换分页
+			async handleCurrentChange(val) {
+				this.currentPage = val
+				this.loading = true
+				this.getsong(this.currentPage, this.pageCount)
+				this.loading = false
+			},
+			// 搜索
+			onQueryChange(query) {
+				this.searchKeyword = query.trim()
+				if (!query) {
+					this.searchKeyword = ''
+					this.getsong(this.currentPage, this.pageCount)
+					return
+				}
+				this.loading = true
+				setTimeout(() => {
+					this.loading = false
+					this.getsong(this.currentPage, this.pageCount)
+				}, 1000)
+			},
+			// :formatter 字段转换
+			statusFormat(row, column) {
+
+			}
+		},
+		async created() {
+			await this.getsong(this.currentPage, this.pageCount)
+			this.operate = [{
+					name: '编辑',
+					func: 'handleEdit',
+					type: 'primary'
+				},
+				{
+					name: '删除',
+					func: 'handleDelete',
+					type: 'danger'
+				}
+			]
+		},
+	}
+</script>
+
+<style lang="scss" scoped>
+	.container {
+		padding: 0 30px;
+
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.title {
+				height: 59px;
+				line-height: 59px;
+				color: $parent-title-color;
+				font-size: 16px;
+				font-weight: 500;
+			}
+		}
+
+		.pagination {
+			display: flex;
+			justify-content: flex-end;
+			margin: 20px;
+		}
+	}
+</style>
