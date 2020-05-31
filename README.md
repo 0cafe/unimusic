@@ -9,9 +9,9 @@
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  clong或者直接下载压缩包。
+2.  在根目录 npm i 安装依赖
+3.  需要安装HbuilderX的scss/sass编译插件，安装完后使用HbuilderX运行。 
 
 #### 使用说明
 
