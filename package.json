@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "better-scroll": "^1.15.2",
+    "js-base64": "^2.5.2",
+    "lyric-parser": "^1.0.1"
+  }
+}

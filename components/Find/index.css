@@ -1,0 +1,53 @@
+.find{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.find .find-swiper{
+	margin-top: 25rpx;
+	width: 700rpx;
+	height: 280rpx;
+}
+.find .find-swiper image{
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+}
+.find-category{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 25rpx;
+	margin-top: 40rpx;
+}
+.find-category .type{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.type .type-icon{
+	width: 100rpx;
+	height: 100rpx;
+	font-size: 50rpx;
+	border-radius: 50%;
+	background-color: #fe0000;
+	text-align: center;
+	line-height: 100rpx;
+}
+.type .type-name{
+	font-size: 13px;
+	font-weight: lighter;
+	text-align: center;
+}
+.find-recommend{
+	width: 100%;
+	font-size: 13px;
+	color: #8b8b8b;
+	text-align: left;
+	margin-top: 50rpx;
+	margin-left: 50rpx;
+}
