@@ -7,12 +7,6 @@ import store from './store/index.js'
 Vue.config.productionTip = false
 Vue.prototype.$store = store
 
-
-if(document.documentElement.clientWidth>900){
-	console.log(1)
-	let body = document.getElementsByTagName('body')
-	console.log(body)
-}
 Vue.prototype.$player = uni.createInnerAudioContext()
 Vue.prototype.$player._data = {
 	id: '',

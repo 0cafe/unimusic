@@ -35,6 +35,10 @@
 					// #endif
 				}
 			})
+			//输入任何地址打开页面始终是首页
+			uni.redirectTo({
+				url:'/pages/index/index'
+			})
 		},
 		onShow: function() {
 			console.log('App Show')

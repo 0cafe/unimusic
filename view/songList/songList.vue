@@ -74,7 +74,7 @@
 				uni.setStorageSync('last_play',item)
 				this.$store.commit('setInPlay',item)
 				this.$store.commit('set_current_song_no',i)
-				this.$store.commit('SET_SONGLIST',this.recommends)
+				this.$store.commit('SET_SONGLIST',this.list)
 			},
 			//关闭当前组件
 			back() {
