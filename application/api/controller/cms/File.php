@@ -18,6 +18,7 @@ use app\lib\exception\file\FileException;
 class File
 {
     /**
+     * @auth('上传图片','文件管理')
      * @return mixed
      * @throws FileException
      * @throws \LinCmsTp\exception\FileException

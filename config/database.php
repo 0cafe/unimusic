@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-20 11:16:51
- * @LastEditTime: 2020-05-20 11:20:01
+ * @LastEditTime: 2020-06-01 17:03:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \muscafe\config\database.php
@@ -25,7 +25,7 @@ return [
     // 数据库名
     'database'        => 'muscafe',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'muscafe',
     // 密码
     'password'        => 'root',
     // 端口

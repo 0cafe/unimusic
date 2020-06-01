@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-20 11:21:30
- * @LastEditTime: 2020-05-29 11:20:17
+ * @LastEditTime: 2020-06-01 15:56:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \muscafe\application\api\controller\app\SongList.php
@@ -20,8 +20,10 @@ class SongList
     {
         $result =  (new SongListModel())->where('id', $id)->find()->hidden(['create_time', 'update_time']);
         return $result;
-    } 
-
+    }
+    /**
+     * @auth('创建歌单','歌单管理')
+     */
     public function create()
     {
         $params = Request::post();
@@ -29,13 +31,18 @@ class SongList
         return writeJson(201, '', '新建成功');
     }
 
+    /**
+     * @auth('更新歌单','歌单管理')
+     */
     public function update()
     {
         $params = Request::put();
         SongListModel::update($params);
         return writeJson(201, '', '更新成功');
     }
-
+    /**
+     * @auth('删除歌单','歌单管理')
+     */
     public function delete($id = '')
     {
         SongListModel::destroy($id);

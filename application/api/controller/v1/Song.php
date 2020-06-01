@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-20 11:21:30
- * @LastEditTime: 2020-05-29 11:38:45
+ * @LastEditTime: 2020-06-01 15:53:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \muscafe\application\api\controller\app\Song.php
@@ -23,6 +23,9 @@ class Song
         return $result;
     }
 
+    /**
+     * @auth('创建歌曲','歌曲管理')
+     */
     public function create()
     {
         $params = Request::post();
@@ -30,6 +33,9 @@ class Song
         return writeJson(201, '', '新建成功');
     }
 
+    /**
+     * @auth('更新歌曲','歌曲管理')
+     */
     public function update()
     {
         $params = Request::put();
@@ -37,6 +43,9 @@ class Song
         return writeJson(201, '', '更新成功');
     }
 
+    /**
+     * @auth('删除歌曲','歌曲管理')
+     */
     public function delete($id = '')
     {
         songModel::destroy($id);

@@ -2,7 +2,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-20 11:21:30
- * @LastEditTime: 2020-05-29 16:14:54
+ * @LastEditTime: 2020-06-01 15:52:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \muscafe\application\api\controller\app\Singer.php
@@ -23,7 +23,9 @@ class Singer
         $result =  (new singerModel())->where('id', $id)->find()->hidden(['create_time', 'update_time']);
         return $result;
     }
-
+    /**
+     * @auth('添加歌手','歌手管理')
+     */
     public function create()
     {
         $params = Request::post();
@@ -31,13 +33,19 @@ class Singer
         return writeJson(201, '', '新建成功');
     }
 
+    /**
+     * @auth('更新歌手','歌手管理')
+     */
     public function update()
     {
         $params = Request::put();
         singerModel::update($params);
         return writeJson(201, '', '更新成功');
     }
-
+    
+    /**
+     * @auth('删除歌手','歌手管理')
+     */
     public function delete($id = '')
     {
         singerModel::destroy($id);
