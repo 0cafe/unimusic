@@ -30,7 +30,7 @@
 						</el-form-item>
 
 						<el-form-item class="submit">
-							<el-button type="primary" @click="submitForm('form')">提 交</el-button>
+							<el-button type="primary" @click="submitForm('form')" v-auth="{auth:'创建歌单', type: 'disabled'}" >提 交</el-button>
 							<el-button @click="resetForm('form')">重 置</el-button>
 						</el-form-item>
 					</el-form>

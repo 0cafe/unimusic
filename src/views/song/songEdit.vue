@@ -58,7 +58,7 @@
 						</el-form-item>
 
 						<el-form-item class="submit">
-							<el-button type="primary" @click="submitForm('form')">保 存</el-button>
+							<el-button type="primary" @click="submitForm('form')" v-auth="{auth:'创建歌单', type: 'disabled'}" >保 存</el-button>
 							<el-button @click="resetForm('form')">重 置</el-button>
 						</el-form-item>
 					</el-form>
@@ -129,11 +129,14 @@
 			},
 			// 主图上传
 			async getValue() {
-				if (this.form.img || this.form.from == 0) {
+				if (this.form.from == 0) {
 					return
 				}
 				let a = await this.$refs['uploadEle'].getValue()
 				let url = a[0].src
+				if(!url){
+					return
+				}
 				this.form.img = url
 			},
 			upload(res,file,filelist){

@@ -10,11 +10,11 @@
 						<el-form-item label="排序" prop="sort">
 							<el-input size="medium" v-model="form.sort" placeholder="请填写"></el-input>
 						</el-form-item>
-						<el-form-item label="歌单封面">
-							<upload-imgs ref="uploadEle" :value="initData" :multiple="true" :max-num="1" :auto-upload="true" />
+						<el-form-item label="图片">
+							<upload-imgs  v-auth="{auth:'上传图片',type:'disabled'}" ref="uploadEle" :value="initData" :multiple="true" :max-num="1" :auto-upload="true" />
 						</el-form-item>
 						<el-form-item class="submit">
-							<el-button type="primary" @click="submitForm('form')">提 交</el-button>
+							<el-button type="primary" @click="submitForm('form')" v-auth="{auth:'创建歌单', type: 'disabled'}" >提 交</el-button>
 							<el-button @click="resetForm('form')">重 置</el-button>
 						</el-form-item>
 					</el-form>

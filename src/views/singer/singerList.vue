@@ -145,7 +145,8 @@
 				{
 					name: '删除',
 					func: 'handleDelete',
-					type: 'danger'
+					type: 'danger',
+					auth:'删除歌单'
 				}
 			]
 		},

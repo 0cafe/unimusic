@@ -25,7 +25,7 @@
 				<el-table-column label="操作">
 					<template scope="scope">
 						<el-button type="primary" @click="handleEdit(scope.row.id)">详情</el-button>
-						<el-button type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+						<el-button type="danger" @click="handleDelete(scope.row.id)" v-auth="{auth:'删除歌单',type:'disabled'}" >删除</el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -147,7 +147,8 @@
 				{
 					name: '删除',
 					func: 'handleDelete',
-					type: 'danger'
+					type: 'danger',
+					auth:'删除歌单'
 				}
 			]
 		},
