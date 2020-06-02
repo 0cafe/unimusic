@@ -22,7 +22,7 @@
 3.cms: 后台管理系统代码
 
 #### 安装教程
-#####客户端：
+客户端：
 1.  clong或者直接下载压缩包。
 2.  在根目录  `npm i` 安装依赖。
 3.  需要安装HbuilderX的scss/sass编译插件，安装完后使用HbuilderX运行。
@@ -34,9 +34,9 @@
 3.修改config文件夹下url.php，配置域名和图片上传目录。
 
 cms搭建：
-1.在根目录npm i,这里安装依赖时不要用淘宝源。
-2.运行：`npm run serve`。
-3.打包：`npm run build`。
+1. 在根目录`npm i`,这里安装依赖时不要用淘宝源。
+2. 运行：`npm run serve`。
+3. 打包：`npm run build`。
 
 #### 总结
 
